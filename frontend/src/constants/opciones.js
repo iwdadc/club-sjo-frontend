@@ -1,0 +1,1 @@
+//opciones.js - — Opciones generales reutilizables en el formulario
