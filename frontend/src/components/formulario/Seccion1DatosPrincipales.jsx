@@ -1,6 +1,5 @@
 // Seccion1DatosPrincipales.jsx — Primera sección del formulario de inscripción
 // Contiene los datos del participante, adulto responsable, escolaridad y DNI
-// Principio SRP: esta sección solo se encarga de los datos principales
 
 import {
   IconUser,
