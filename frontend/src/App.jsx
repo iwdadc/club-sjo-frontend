@@ -9,7 +9,10 @@ import FormularioPage from './pages/FormularioPage'
 import AdminPage from './pages/AdminPage'
 import ProfesorPage from './pages/ProfesorPage'
 import NotFoundPage from './pages/NotFoundPage'
+import TestPage from './pages/TestPage'
 
+import { IconUser, IconRun, IconHeart } from '@tabler/icons-react'
+<IconUser size={16} />
 function App() {
   return (
     <BrowserRouter> 
@@ -23,6 +26,8 @@ function App() {
         {/* Privadas - solo accesibles segun el rol*/}
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/profesor" element={<ProfesorPage />} />
+
+        <Route path="/testPage" element={<TestPage />} />
 
         {/* Cualquier ruta inexistente */}
         <Route path="*" element={<NotFoundPage />} />
