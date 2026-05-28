@@ -2,13 +2,13 @@
 // Contiene los datos del participante, adulto responsable, escolaridad y DNI
 
 import {
-  IconUser,
-  IconId,
-  IconSchool,
-  IconUsers,
-  IconHeart,
-  IconHome,
-  IconUpload,
+    IconUser,
+    IconId,
+    IconSchool,
+    IconUsers,
+    IconHeart,
+    IconHome,
+    IconUpload,
 } from '@tabler/icons-react'
 
 import Input      from '../common/Input'

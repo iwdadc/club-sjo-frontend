@@ -2,11 +2,11 @@
 //Contiene los campos relacionados a la actividad a la que se inscribe el menor, como sede, actividad, antigüedad, etc.
 
 import {
-  IconRun,
-  IconMapPin,
-  IconBrandWhatsapp,
-  IconCalendar,
-  IconWalk,
+    IconRun,
+    IconMapPin,
+    IconBrandWhatsapp,
+    IconCalendar,
+    IconWalk,
 } from '@tabler/icons-react'
 
 import RadioGroup from '../common/RadioGroup'
@@ -111,10 +111,8 @@ function Seccion2Actividad({ register, errors, watch }) {
           required={true}
           error={errors.retiroMenor}
         />
-      </div>
-      
-      {/* QUIÉN LO BUSCA */}
-      {retiro === "buscan" && (
+        {/* QUIÉN LO BUSCA */}
+        {retiro === "buscan" && (
         <div className="mt-3">
           <TituloBloque icono={IconBrandWhatsapp} texto="Quién lo busca" />
           <Input
@@ -126,7 +124,10 @@ function Seccion2Actividad({ register, errors, watch }) {
             error={errors.quienBusca}
           />
         </div>
-      )}
+      )}  
+      </div>
+      
+      
 
     </div>
   )

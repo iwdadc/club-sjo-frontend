@@ -3,10 +3,10 @@
 // Contiene sacramentos, razon por la que falta/n algu/nos sacramento/s y grupos pastorales
 
 import {
-  IconStar,
-  IconQuestionMark,
-  IconUsersGroup,
-  IconInfoCircle,
+    IconStar,
+    IconQuestionMark,
+    IconUsersGroup,
+    IconInfoCircle,
 } from '@tabler/icons-react'
 
 import RadioGroup from '../common/RadioGroup'

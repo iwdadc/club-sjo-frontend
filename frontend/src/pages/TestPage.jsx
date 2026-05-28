@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form"
 import Seccion2Actividad from "../components/formulario/Seccion2Actividad"
 import Seccion1DatosPrincipales from "../components/formulario/Seccion1DatosPrincipales"
 import Seccion3Pastoral from "../components/formulario/Seccion3Pastoral"
+import Seccion4Salud from "../components/formulario/Seccion4Salud"
 function TestPage() {
 
   const {
@@ -16,7 +17,7 @@ function TestPage() {
 
       <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-6">
 
-        <Seccion3Pastoral
+        <Seccion4Salud
           register={register}
           errors={errors}
           watch={watch} // Pasamos la función watch para observar los valores de los campos

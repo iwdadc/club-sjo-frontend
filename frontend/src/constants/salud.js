@@ -1,4 +1,10 @@
 //salud.js — Opciones fijas para el formulario de salud
+
+export const OBRA_SOCIAL = [
+  { value: "si", label: "Sí" },
+  { value: "no", label: "No" }
+]
+
 export const CONDICIONES_SALUD = [
   { value: "asma", label: "Asma / Broncoespasmos a repetición" },
   { value: "diabetes", label: "Diabetes" },
@@ -21,4 +27,6 @@ export const SINTOMAS_EJERCICIO = [
   { value: "dolor_pecho", label: "Dolor de pecho" },
   { value: "mayor_cansancio", label: "Mayor cansancio" },
   { value: "dificultad_respirar", label: "Dificultad para respirar" },
+  { value:"disminucion_audicion", label: "Disminución de la audición" },
+  { value: "problemas_vision", label: "Problemas de visión" },
 ]
