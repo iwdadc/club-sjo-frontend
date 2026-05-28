@@ -1,3 +1,6 @@
+//Seccion2Actividad.jsx Segunda sección del formulario de inscripción
+//Contiene los campos relacionados a la actividad a la que se inscribe el menor, como sede, actividad, antigüedad, etc.
+
 import {
   IconRun,
   IconMapPin,
@@ -29,7 +32,6 @@ function Seccion2Actividad({ register, errors, watch }) {
   // Lo usamos para mostrar el campo "quién lo busca" solo si eligió que no se retira solo
 
   const retiro = watch("retiroMenor")
-  console.log(retiro)
 
   return (  
     <div className="flex flex-col gap-8">
@@ -64,7 +66,7 @@ function Seccion2Actividad({ register, errors, watch }) {
       <div>
         <TituloBloque icono={IconCalendar} texto="Antigüedad en el club" />
         <Select
-          label="¿Cuánto tiempo lleva en el club?"
+          label="¿Desde cuando participa de las actividades del club?"
           name="antiguedad"
           options={ANIOS_PARTICIPACION}
           register={register}

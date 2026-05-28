@@ -21,7 +21,7 @@ export const TURNOS = [
 
 export const RETIRO_MENOR = [
   { value: "solo", label: "Autorizo que se retire solo" },
-  { value: "buscan", label: "No lo autorizo, lo va a buscar un familiar mayor de edad" },
+  { value: "buscan", label: "No lo autorizo que se retire solo, lo va a buscar un familiar mayor de edad" },
 ]
 
 export const RAZON_SACRAMENTO = [
