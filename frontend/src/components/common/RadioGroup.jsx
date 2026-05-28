@@ -16,7 +16,7 @@ function RadioGroup({ label, name, options, register, required = false, error, d
                         <input
                             type="radio"
                             value={op.value}
-                            {...register(name, { required : required ? `&{label} es obligatorio` : false})}
+                            {...register(name, { required : required ? `${label} es obligatorio` : false})}
                             className="accent-[#1E3A8A] w-4 h-4"
                         />
                         <span className="text-sm text-gray-700">{op.label}</span>

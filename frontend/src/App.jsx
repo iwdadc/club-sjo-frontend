@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter> 
       <Routes>
         {/* Publica - formulario de inscripcion via QR o link*/}
-        <Route path="/" element={<FormularioPage />} />
+        <Route path="/" element={<TestPage />} />
 
         {/* Autenticacion */}
         <Route path="/login" element={<LoginPage />} />

@@ -17,7 +17,8 @@ function Checkbox({ label, name, options, register, required = false, error }) {
                             type="checkbox"
                             value={op.value}
                             {...register(name, { 
-                                validate: required ? (value) => value.length > 0 || `${label} es obligatorio` : undefined
+                                validate: required 
+                                ? (value) => value.length > 0|| `${label} es obligatorio` : undefined
                                 }
                             )}
                             className="accent-[#1E3A8A] w-4 h-4 rounded"
@@ -35,4 +36,4 @@ function Checkbox({ label, name, options, register, required = false, error }) {
     )
 }
 
-
+export default Checkbox

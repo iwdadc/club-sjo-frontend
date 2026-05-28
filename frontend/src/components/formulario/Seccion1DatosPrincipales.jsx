@@ -18,7 +18,6 @@ import RadioGroup from '../common/RadioGroup'
 import { GENEROS, PARENTESCOS, TURNOS } from '../../constants/opciones'
 
 // Componente interno reutilizable para los títulos de cada bloque
-// Principio DRY: en vez de repetir el mismo div con ícono y texto en cada sección
 function TituloBloque({ icono: Icono, texto, opcional = false }) {
   return (
     <div className="flex items-center gap-2 mb-3">
@@ -61,7 +60,7 @@ function Seccion1DatosPrincipales({ register, errors }) {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <Select
               label="Género"
               name="genero"
@@ -78,15 +77,6 @@ function Seccion1DatosPrincipales({ register, errors }) {
               required={true}
               error={errors.fechaNacimiento}
             />
-            <Input
-              label="Edad"
-              name="edad"
-              type="number"
-              placeholder="Ej: 14"
-              register={register}
-              required={true}
-              error={errors.edad}
-            />
           </div>
 
           <Input
@@ -100,7 +90,7 @@ function Seccion1DatosPrincipales({ register, errors }) {
         </div>
       </div>
 
-      {/* ── ESCOLARIDAD ── */}
+      {/* ESCOLARIDAD */}
       <div>
         <TituloBloque icono={IconSchool} texto="Escolaridad" />
 
@@ -149,7 +139,7 @@ function Seccion1DatosPrincipales({ register, errors }) {
         </div>
       </div>
 
-      {/* ── ADULTO RESPONSABLE ── */}
+      {/* ADULTO RESPONSABLE */}
       <div>
         <TituloBloque icono={IconUsers} texto="Adulto responsable" />
 
@@ -189,11 +179,11 @@ function Seccion1DatosPrincipales({ register, errors }) {
             register={register}
             required={true}
             error={errors.telefonoAdulto}
-          />
+          />  
         </div>
       </div>
 
-      {/* ── PADRE Y MADRE ── */}
+      {/* PADRE Y MADRE */}
       <div>
         <TituloBloque icono={IconHeart} texto="Padre / Madre" opcional={true} />
 
@@ -225,7 +215,7 @@ function Seccion1DatosPrincipales({ register, errors }) {
         </div>
       </div>
 
-      {/* ── CONVIVENCIA ── */}
+      {/* CONVIVENCIA */}
       <div>
         <TituloBloque icono={IconHome} texto="Convivencia" />
 
@@ -246,7 +236,7 @@ function Seccion1DatosPrincipales({ register, errors }) {
         </div>
       </div>
 
-      {/* ── FOTOS DNI ── */}
+      {/* FOTOS DNI */}
       <div>
         <TituloBloque icono={IconId} texto="Fotos del DNI del participante" />
 
