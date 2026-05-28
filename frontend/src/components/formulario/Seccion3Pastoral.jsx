@@ -11,6 +11,7 @@ import {
 
 import RadioGroup from '../common/RadioGroup'
 import Checkbox   from '../common/Checkbox'
+import Input from '../common/Input'
 
 import { SACRAMENTOS, RAZON_SACRAMENTO, GRUPOS_PASTORALES } from '../../constants/opciones'
 
@@ -24,6 +25,8 @@ function TituloBloque({ icono: Icono, texto }) {
 }
 
 function Seccion3Pastoral({ register, errors, watch }) {
+    const otrosGrupos = watch("gruposPastorales")
+
   return (
     <div className="flex flex-col gap-8">
 
@@ -73,13 +76,25 @@ function Seccion3Pastoral({ register, errors, watch }) {
         <div>
             <TituloBloque icono={IconUsersGroup} texto="Grupos pastorales y/o barriales" />
 
-            <RadioGroup
+            <Checkbox
             label="¿A qué grupo pastoral pertenece el participante?"
-            name="grupowPastorales"
+            name="gruposPastorales"
             options={GRUPOS_PASTORALES}
             register={register}
-            error={errors.grupoPastoral}
+            error={errors.gruposPastorales}
             />
+            {Array.isArray(otrosGrupos) && otrosGrupos.includes("otros") && (
+                <div className="mt-3">  
+                    <Input
+                        label="¿Cuáles son los otros grupos pastorales?"
+                        name="otrosGruposPastorales"
+                        placeholder="Ej: Grupo Juvenil San José, , Pastoral Scout..."
+                        register={register}
+                        required={true}
+                        error={errors.otrosGruposPastorales}
+                    />
+                </div>
+            )}
         </div>
     </div>
   )
