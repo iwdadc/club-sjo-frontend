@@ -18,7 +18,7 @@ function TituloBloque({ icono: Icono, texto }) {
 }
 
 function Seccion5Autorizacion({ register, errors, watch }) {
-    const autorizacion = watch("autorizacion")
+    const autorizacion = watch("autorizacionActividad")
 
     return (
         <div className="flex flex-col gap-8">
@@ -49,7 +49,7 @@ function Seccion5Autorizacion({ register, errors, watch }) {
                         { value: "si", label: "Sí, autorizo" },
                         { value: "no", label: "No autorizo" }
                     ]}
-                    errors={errors.autorizacionActividad} 
+                    error={errors.autorizacionActividad} 
                 />  
 
                 {/* Advertencia si elige "No autorizo" */}

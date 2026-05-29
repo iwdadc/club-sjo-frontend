@@ -102,7 +102,6 @@ function Seccion6Imagen({ register, errors, watch }) {
                 />
             </div>
         </div>  
-            
     )
 }
 
