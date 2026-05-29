@@ -31,7 +31,7 @@ function FormularioPage() {
   // Estado que controla si el formulario fue enviado con éxito
   const [enviado, setEnviado] = useState(false)
 
-  // react-hook-form — un solo formulario para todas las secciones
+  // react-hook-form - un solo formulario para todas las secciones
   const { register, handleSubmit, watch, formState: { errors } } = useForm()
 
   // Porcentaje de progreso para la barra
@@ -39,7 +39,13 @@ function FormularioPage() {
 
   // Avanzar al siguiente paso
   function siguientePaso() {
-    if (pasoActual < PASOS.length) setPasoActual(pasoActual + 1)
+    if (pasoActual < PASOS.length){ 
+      setPasoActual(pasoActual + 1)
+      window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    })
+    }
   }
 
   // Volver al paso anterior
@@ -47,7 +53,7 @@ function FormularioPage() {
     if (pasoActual > 1) setPasoActual(pasoActual - 1)
   }
 
-  // Submit final — se ejecuta cuando el usuario completa la sección 6
+  // Submit final - se ejecuta cuando el usuario completa la sección 6
   function onSubmit(datos) {
     console.log("Datos del formulario:", datos)
     setEnviado(true)
@@ -113,7 +119,7 @@ function FormularioPage() {
               Club San José Obrero
             </h1>
             <p className="text-xs text-[#B5D4F4]">
-              Inscripciones 2026 — Formulario oficial
+              Inscripciones - Formulario oficial
             </p>
           </div>
         </div>
