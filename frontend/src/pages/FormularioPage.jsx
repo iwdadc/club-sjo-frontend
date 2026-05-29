@@ -32,13 +32,15 @@ function FormularioPage() {
   const [enviado, setEnviado] = useState(false)
 
   // react-hook-form - un solo formulario para todas las secciones
-  const { register, handleSubmit, watch, formState: { errors } } = useForm()
+  const { register, handleSubmit, watch, trigger, formState: { errors } } = useForm()
 
   // Porcentaje de progreso para la barra
   const progreso = Math.round((pasoActual / PASOS.length) * 100)
 
   // Avanzar al siguiente paso
-  function siguientePaso() {
+  async function siguientePaso() {
+    const valido = await trigger()
+    if(!valido) return
     if (pasoActual < PASOS.length){ 
       setPasoActual(pasoActual + 1)
       window.scrollTo({

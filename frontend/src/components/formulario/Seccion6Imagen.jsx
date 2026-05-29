@@ -73,7 +73,7 @@ function Seccion6Imagen({ register, errors, watch }) {
                 ]}
                 register = {register}
                 required = {true}
-                errors = {errors.autorizacionImagen}
+                error = {errors.autorizacionImagen}
                 />
 
                 {/* Advertencia si elige "No autorizo" */}
