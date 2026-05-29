@@ -93,7 +93,7 @@ function Seccion4Salud({ register, errors, watch }) {
             <div className="text-xs text-gray-400 mb-2">
                 Completa marcando Sí o No según corresponda.
             </div>
-            <div className="border border-gray-100 rounded-xl px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 border border-gray-100 rounded-xl px-4 gap-3">
                 <FilaCondicion
                 label="Asma o broncoespasmos a repetición"
                 name="asma"
@@ -202,7 +202,7 @@ function Seccion4Salud({ register, errors, watch }) {
             <p className="text-xs text-gray-400 mb-3">  
                 ¿Ha padecido alguna vez durante o después del ejercicio?     
             </p>
-            <div className="border border-gray-100 rounded-xl px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 border border-gray-100 rounded-xl px-4 gap-3">
                 <FilaCondicion
                     label="Desmayos"
                     name="sintomaDesmayos"
@@ -266,7 +266,7 @@ function Seccion4Salud({ register, errors, watch }) {
                         campoExtra={{
                             label: "Especificar diagnóstico de problemática visual",        
                             name: "detalleSintomaProblemasVision",
-                            placeholder: "Ej: Miopía en ambos ojos, con corrección óptica mediante uso de anteojos, etc."
+                            placeholder: "Ej: Miopía en ambos ojos, etc."
                         }}
                 />         
             </div>
@@ -276,7 +276,7 @@ function Seccion4Salud({ register, errors, watch }) {
         <div>
             <TituloBloque icono={IconHeartRateMonitor} texto="Otros" />
 
-            <div className="border border-gray-100 rounded-xl px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 border border-gray-100 rounded-xl px-4 gap-3">
                 <FilaCondicion
                     label="¿Recibe de manera habitual algún tipo de medicación?"
                     name="recibeMedicamentoHabitual"
@@ -286,7 +286,7 @@ function Seccion4Salud({ register, errors, watch }) {
                         campoExtra={{
                             label: "Especificar medicación habitual",
                             name: "detalleRecibeMedicamentoHabitual",
-                            placeholder: "Ej: Recibe 10 mg de Loratadina una vez al día, etc."
+                            placeholder: "Ej: Recibe 10 mg de Loratadina, etc."
                         }}
                 />
                 <FilaCondicion
