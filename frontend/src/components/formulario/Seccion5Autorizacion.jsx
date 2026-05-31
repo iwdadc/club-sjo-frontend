@@ -45,6 +45,7 @@ function Seccion5Autorizacion({ register, errors, watch }) {
                     name="autorizacionActividad"
                     direccion="fila"
                     register={register}
+                    required={true}
                     options={[
                         { value: "si", label: "Sí, autorizo" },
                         { value: "no", label: "No autorizo" }

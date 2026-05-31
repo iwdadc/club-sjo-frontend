@@ -2,7 +2,7 @@
 // Orquesta las 6 secciones, maneja el stepper, progreso y el submit final
 
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm  } from 'react-hook-form'
 
 import logoSjo from '../assets/logo-sjo.png'
@@ -24,6 +24,94 @@ const PASOS = [
   { numero: 6, titulo: "Imagen",               subtitulo: "Uso de imagen"               },
 ]
 
+const CAMPOS_POR_PASO = {
+  1: [
+    "nombreApellido",
+    "dniParticipante",
+    "genero",
+    "fechaNacimiento",
+    "domicilio",
+    "escolaridad",
+    "nombreAdulto",
+    "dniAdulto",
+    "parentesco",
+    "telefonoAdulto",
+    "convivencia",
+    "dniFrenteFile",
+    "dniDorsoFile",
+  ],
+
+  2: [
+    "sede",
+    "actividades",
+    "antiguedad",
+    "whatsapp",
+    "retiroMenor",
+    "quienBusca",
+  ],
+
+  3: [
+    "razonSacramento",
+    "otrosGruposPastorales",
+  ],
+
+  4: [
+    "obraSocial",
+    "detalleObraSocial",
+
+    "asma",
+    "diabetes",
+    "hipertension",
+    "hipotension",
+    "problemasCardiacos",
+    "celiaquia",
+
+    "alergias",
+    "detalleAlergias",
+
+    "epilepsia",
+
+    "problemasColumna",
+    "detalleProblemasColumna",
+
+    "problemasHuesos",
+
+    "convulsiones",
+
+    "condicionAlimentaria",
+    "detalleCondicionAlimentaria",
+
+    "sintomaDesmayos",
+    "sintomaMareos",
+    "sintomaPalpitaciones",
+    "sintomaDolorPecho",
+    "sintomaMayorCansancio",
+    "sintomaDificultadRespirar",
+
+    "sintomaDisminucionAudicion",
+    "detalleSintomaDisminucionAudicion",
+
+    "sintomaProblemasVision",
+    "detalleSintomaProblemasVision",
+
+    "recibeMedicamentoHabitual",
+    "detalleRecibeMedicamentoHabitual",
+
+    "tuvoOperacion",
+    "detalleTuvoOperacion",
+  ],
+
+  5: [
+    "autorizacionActividad",
+    "firmaAutorizacion",
+  ],
+
+  6: [
+    "autorizacionImagen",
+    "firmaImagen",
+  ],
+}
+
 function FormularioPage() {
   // Estado que controla en qué sección estamos (arranca en 1)
   const [pasoActual, setPasoActual] = useState(1)
@@ -32,20 +120,34 @@ function FormularioPage() {
   const [enviado, setEnviado] = useState(false)
 
   // react-hook-form - un solo formulario para todas las secciones
-  const { register, handleSubmit, watch, trigger, formState: { errors } } = useForm()
+  const { register, handleSubmit, watch, trigger, formState: { errors }, reset } = useForm()
+
+  useEffect(() => {
+    const datosGuardados = localStorage.getItem('formulario-sjo')
+    if (datosGuardados) {
+      reset(JSON.parse(datosGuardados))
+    }
+  }, [reset])
+
+  const valores = watch()
+  useEffect(() => {
+    localStorage.setItem('formulario-sjo', JSON.stringify(valores))
+  }, [valores])
 
   // Porcentaje de progreso para la barra
   const progreso = Math.round((pasoActual / PASOS.length) * 100)
 
   // Avanzar al siguiente paso
   async function siguientePaso() {
-    const valido = await trigger()
+    const valido = await trigger(
+      CAMPOS_POR_PASO[pasoActual]
+    )
     if(!valido) return
     if (pasoActual < PASOS.length){ 
       setPasoActual(pasoActual + 1)
       window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     })
     }
   }
@@ -53,11 +155,17 @@ function FormularioPage() {
   // Volver al paso anterior
   function pasoAnterior() {
     if (pasoActual > 1) setPasoActual(pasoActual - 1)
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
   }
 
   // Submit final - se ejecuta cuando el usuario completa la sección 6
   function onSubmit(datos) {
     console.log("Datos del formulario:", datos)
+    localStorage.removeItem('formulario-sjo')
     setEnviado(true)
   }
 
@@ -127,7 +235,7 @@ function FormularioPage() {
         </div>
 
         {/* BARRA DE PROGRESO */}
-        <div className="bg-white px-6 pt-4 pb-2">
+        <div className="bg-white px-6 pt-4 pb-4">
           <div className="flex justify-between text-xs text-gray-400 mb-1">
             <span>Sección {pasoActual} de {PASOS.length} — {PASOS[pasoActual - 1].titulo}</span>
             <span className="text-[#1E3A8A] font-medium">{progreso}%</span>
@@ -178,7 +286,7 @@ function FormularioPage() {
             {pasoActual === 6 && <Seccion6Imagen           register={register} errors={errors} watch={watch} />}
           </div>
 
-          {/* FOOTER — botones de navegación */}
+          {/* FOOTER - botones de navegación */}
           <div className="bg-white rounded-b-2xl px-6 py-4 border-t border-gray-100 flex justify-between items-center">
             <button
               type="button"
