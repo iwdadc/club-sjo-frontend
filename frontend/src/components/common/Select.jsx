@@ -5,7 +5,7 @@ function Select({ label, name, options, register, required = false, error }) {
         <div className="flex flex-col gap-1">
 
             {/* Label del campo */}
-            <label className="text-sm font-medium text-gray-500 uppercase tracking-wide">
+            <label className="text-xs font-medium text-gray-500 uppercase tracking-wide">
                 {label} {required && <span className="text-red-500">*</span>}
             </label>
 
