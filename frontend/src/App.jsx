@@ -4,12 +4,13 @@
 
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 
+import RutaProtegida from "./components/common/RutaProtegida"
 import LoginPage from './pages/LoginPage'
 import FormularioPage from './pages/FormularioPage'
 import AdminPage from './pages/AdminPage'
 import ProfesorPage from './pages/ProfesorPage'
 import NotFoundPage from './pages/NotFoundPage'
-import TestPage from './pages/TestPage'
+
 
 import { IconUser, IconRun, IconHeart } from '@tabler/icons-react'
 <IconUser size={16} />
@@ -24,10 +25,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
 
         {/* Privadas - solo accesibles segun el rol*/}
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/profesor" element={<ProfesorPage />} />
-
-        <Route path="/testPage" element={<TestPage />} />
+        <Route path="/admin" element={<RutaProtegida rolRequerido="ADMIN"><AdminPage /></RutaProtegida>} />
+        <Route path="/profesor" element={<RutaProtegida rolRequerido="PROFESOR"><ProfesorPage /></RutaProtegida>} />
 
         {/* Cualquier ruta inexistente */}
         <Route path="*" element={<NotFoundPage />} />
