@@ -15,7 +15,7 @@ const NAV_ITEMS = [
 
 function SidebarAdmin() {
   return (
-    <aside className="hidden md:flex flex-col w-72 min-h-screen bg-[#0F1F5C] flex-shrink-0">
+    <aside className="hidden md:flex flex-col w-56 min-h-screen bg-[#0F1F5C] flex-shrink-0">
 
       {/* Logo */}
       <div className="flex items-center gap-3 px-4 py-5 border-b border-white/10">
@@ -23,7 +23,7 @@ function SidebarAdmin() {
           <img src={logoSjo} alt="Club San José Obrero" className="w-full h-full object-contain" />
         </div>
         <div>
-          <p className="text-xl font-medium text-white leading-tight">San José Obrero</p>
+          <p className="text-sm font-medium text-white leading-tight">San José Obrero</p>
           <p className="text-[10px] text-[#B5D4F4]">Panel de gestión</p>
         </div>
       </div>
@@ -35,14 +35,14 @@ function SidebarAdmin() {
       {NAV_ITEMS.slice(0, 4).map((item) => (
         <button
         key={item.label}
-        className={`flex items-center gap-4 px-6 py-4 text-lg transition-all text-left
+        className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-all text-left
           ${
             item.activo
             ? 'bg-white/10 text-white border-l-4 border-[#378ADD]'
             : 'text-[#D5E8FF] hover:bg-white/5 border-l-4 border-transparent'
           }`}
         >
-      <item.icono size={22} />
+      <item.icono size={16} />
       {item.label}
     </button>
   ))}
@@ -54,7 +54,7 @@ function SidebarAdmin() {
   {NAV_ITEMS.slice(4).map((item) => (
     <button
       key={item.label}
-      className="flex items-center gap-4 px-6 py-4 text-lg text-[#D5E8FF] hover:bg-white/5 border-l-4 border-transparent transition-all text-left"
+      className="flex items-center gap-3 px-4 py-2.5 text-sm text-[#D5E8FF] hover:bg-white/5 border-l-4 border-transparent transition-all text-left"
     >
       <item.icono size={22} />
       {item.label}

@@ -17,7 +17,7 @@ function HeaderAdmin({ usuario, logout }) {
       </div>
 
       {/* Título - solo visible en desktop */}
-      <h2 className="hidden md:block text-2xl font-medium text-gray-800">Inscripciones recientes</h2>
+      <h2 className="hidden md:block text-lg font-medium text-gray-800">Inscripciones recientes</h2>
 
       {/* Derecha */}
       <div className="flex items-center gap-3">
