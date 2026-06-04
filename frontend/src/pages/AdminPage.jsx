@@ -1,33 +1,118 @@
 //AdminPage.jsx - Panel de coordinador (ADMIN)
 // Solo accesible para usuarios con rol ADMIN
 
+import { useState, useEffect } from 'react';
 import {useAuth} from '../context/AuthContext';
+import {getInscripciones, getStats} from '../services/inscripcionService';
+
+import StatCard from '../components/admin/StatCard';
+import TablaInscripciones from '../components/admin/TablaInscripciones';
+
+import SidebarAdmin from '../components/admin/SidebarAdmin';
+import HeaderAdmin from '../components/admin/HeaderAdmin';
 
 function AdminPage() {
   const {usuario, logout} = useAuth();
-  return (
-    <div className="min-h-screen bg-[#E6F1FB]">
 
-      <div className="bg-[#1E3A8A] px-6 py-4 flex justify-between items-center">
-        <div>
-          <h1 className="text-2xl font-bold text-[#1E3A8A] mb-4">Panel de Coordinador</h1>
-          <p className="text-sm text-gray-600 mb-6">Club San José Obreroc</p>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="text-[#B5D4F4] text-xs">Usuario: {usuario?.nombre}</span>
-          <button 
-          onClick={logout} 
-          className="bg-white text-[#1E3A8A] text-xs font-medium px-3 py-1.5 rounded-lg hover:bg-[#E6F1FB] transition-colors"
-          >
-          Cerrar sesión
+  const [inscripciones, setInscripciones] = useState([]);
+  const [stats, setStats] = useState(null);
+  const [cargando, setCargando] = useState(true);
+  const [detalle, setDetalle] = useState(null);
+
+  useEffect(() => { 
+    async function cargarDatos() {
+      try {
+        setCargando(true);
+        const [inscripcionesData, statsData] = await Promise.all([
+          getInscripciones(),
+          getStats()
+        ])
+        setInscripciones(inscripcionesData);
+        setStats(statsData);
+      } catch (error) {
+        console.error('Error al cargar los datos:', error);
+      } finally {
+        setCargando(false);
+      }
+    }
+    cargarDatos();
+  }, [])
+
+  if (cargando) {
+    return (
+      <div className="min-h-screen bg-[#E6F1FB] flex items-center justify-center">
+        <p className="text-sm text-[#1E3A8A]">Cargando...</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="min-h-screen bg-white flex">
+
+      <SidebarAdmin />
+
+      <main className="flex-1">
+        <HeaderAdmin 
+        usuario={usuario}
+        logout={logout}
+        />
+      <div className="px-8 py-6">
+
+      {/* STATS */}
+      {stats && (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+        <StatCard titulo="Alumnos Inscriptos" valor={stats.totalAlumnos}  delta="+ 12 esta semana" />
+        <StatCard titulo="Actividades Activas" valor={stats.actividadesActivas}  delta="Sin cambios"/>
+        <StatCard titulo="Cupos Disponibles" valor={stats.cuposDisponibles} delta="- 8 menos que ayer" deltaNegativo ={true} />
+        <StatCard titulo="Pendientes" valor={stats.pendientes} delta="Revisar" />
+      </div>
+      )}
+
+      
+
+      {/* TABLA DE INSCRIPCIONES - solo visible en desktop */}
+      <div>
+        {/* ENCABEZADO DE SECCION */}
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-sm font-semibold text-gray-900">Últimas inscripciones</h2>
+          <button className="px-5 py-2.5 bg-white border border-gray-200 rounded-xl text-xs font-medium hover:bg-gray-50">
+            + Nueva
           </button>
         </div>
+        <TablaInscripciones
+        inscripciones={inscripciones}
+        onVerDetalle={(ins) => setDetalle(ins)}
+        />
+      </div>
     </div>
+    </main>
 
-    <div className="flex items-center justify-center h-[calc(100vh-64px)]"> 
-      <p className="text-[#1E3A8A] font-medium">Panel Admin — en construcción</p>
-    </div>
+      {/* Modal de detalle de inscripción */}
+      {detalle && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center px-4 z-50">
+          <div className="bg-white rounded-2xl p-6 w-full max-w-md shadow-xl"> 
+            <h3 className="text-base font-semibold text-[#1E3A8A] mb-4">Detalle de Inscripción</h3>
+            <div className="flex flex-col gap-2 text-sm text-gray-600">
+              <p><span className="font-medium text-gray-700">Alumno:</span> {detalle.nombreAlumno}</p>
+              <p><span className="font-medium text-gray-700">DNI:</span> {detalle.dniAlumno}</p>
+              <p><span className="font-medium text-gray-700">Actividad:</span> {detalle.actividad}</p>
+              <p><span className="font-medium text-gray-700">Sede:</span> {detalle.sede}</p>
+              <p><span className="font-medium text-gray-700">Adulto Responsable:</span> {detalle.nombreAdulto}</p>
+              <p><span className="font-medium text-gray-700">Teléfono:</span> {detalle.telefonoAdulto}</p>
+              <p><span className="font-medium text-gray-700">Fecha de Inscripción:</span> {detalle.fechaInscripcion}</p>
+              <p><span className="font-medium text-gray-700">Estado:</span> {detalle.estado}</p>
+            </div>
+            <button
+            onClick={() => setDetalle(null)}
+            className="mt-6 w-full bg-[#1E3A8A] text-white py-2 rounded-lg text-sm font-medium hover:bg-[#0F1F5C] transition-colors"
+            >
+            Cerrar
+            </button>
+          </div>
+        </div>
+      )}
+
   </div>
   )
-}
+} 
 export default AdminPage

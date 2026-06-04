@@ -249,7 +249,8 @@ function FormularioPage() {
         </div>
 
         {/* STEPPER */}
-        <div className="bg-white px-6 pb-4 flex items-center gap-1 flex-wrap">
+        <div className="bg-white px-6 pb-4 overflow-x-auto">
+        <div className="flex items-center min-w-max">
           {PASOS.map((paso) => (
             <div key={paso.numero} className="flex items-center gap-1 px-5">
               <div className={`
@@ -273,6 +274,7 @@ function FormularioPage() {
               )}
             </div>
           ))}
+        </div>
         </div>
 
         {/* CONTENIDO DE LA SECCIÓN ACTUAL */}
