@@ -20,7 +20,7 @@ function RutaProtegida({ children, rolRequerido }) {
     }
 
     if (usuario.rol !== rolRequerido) {
-    return <Navigate to="/login" replace />
+        return <Navigate to="/login" replace />
     }
 
     return children;
