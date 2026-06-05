@@ -11,6 +11,8 @@
   import SidebarAdmin from '../components/admin/SidebarAdmin';
   import HeaderAdmin from '../components/admin/HeaderAdmin';
   import BottomNav from '../components/admin/BottomNav';
+
+  import { IconFileReport } from '@tabler/icons-react';
   function AdminPage() {
     const {usuario, logout} = useAuth();
 
@@ -88,6 +90,25 @@
           onVerDetalle={(ins) => setDetalle(ins)}
           />
         </div>
+
+        {/* Acceso rápido a Reportes */}
+<div className="mt-6">
+  <h2 className="text-sm font-semibold text-gray-900 mb-3">Accesos rápidos</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <button
+      onClick={() => setModuloActivo('reportes')}
+      className="flex items-center gap-4 p-4 bg-white border border-gray-200 rounded-2xl hover:border-[#1E3A8A] hover:bg-[#E6F1FB] transition-colors text-left"
+    >
+      <div className="w-10 h-10 rounded-xl bg-[#E6F1FB] flex items-center justify-center flex-shrink-0">
+        <IconFileReport size={20} className="text-[#1E3A8A]" />
+      </div>
+      <div>
+        <p className="text-sm font-medium text-gray-800">Reportes</p>
+        <p className="text-xs text-gray-400">Ver y descargar reportes por clase y profesor</p>
+      </div>
+    </button>
+  </div>
+</div>
       </div>
       )}
       {/* MODULO ALUMNOS */}
