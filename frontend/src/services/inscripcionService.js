@@ -1,6 +1,6 @@
 // inscripcionService.js - capa de comunicación con el backend para las inscripciones
 
-import { INSCRIPCIONES_MOCK, STATS_MOCK } from '../constants/inscripcionesMock';
+import { INSCRIPCIONES_MOCK, STATS_MOCK, ALUMNOS_DETALLE_MOCK } from '../constants/inscripcionesMock';
 
 function simularDelay(ms = 600) {
     return new Promise((resolve) => setTimeout(resolve, ms));
@@ -14,6 +14,11 @@ export async function getInscripciones() {
 export async function getStats() {
     await simularDelay();
     return STATS_MOCK;
+}
+
+export async function getAlumnos() {
+    await simularDelay();
+    return ALUMNOS_DETALLE_MOCK;
 }
 
 export async function actualizarEstado(id, nuevoEstado) {
