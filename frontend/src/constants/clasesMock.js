@@ -1,0 +1,58 @@
+// clasesMock.js — Datos falsos para simular clases del sistema
+
+export const CLASES_MOCK = [
+    {
+        id: 1,
+        nombre:     "Natación",
+        horario:    "Lunes y Miércoles 9:00 h",
+        sede:       "Capilla San José Obrero",
+        profesor:   "Ricardo Sosa",
+        cupoMax:    15,
+        inscriptos: 5,
+    },
+    {
+        id: 2,
+        nombre:     "Fútbol juvenil masculino",
+        horario:    "Martes y Jueves 17:00 h",
+        sede:       "Cancha de Manco",
+        profesor:   "Joshua Pérez / Ramón García",
+        cupoMax:    20,
+        inscriptos: 8,
+    },
+    {
+        id: 3,
+        nombre:     "Folklore",
+        horario:    "Sábados 10:00 h",
+        sede:       "Capilla San José Obrero",
+        profesor:   "Virginia López",
+        cupoMax:    20,
+        inscriptos: 3,
+    },
+    {
+        id: 4,
+        nombre:     "Hockey mixto",
+        horario:    "Lunes y Viernes 18:00 h",
+        sede:       "Capilla San José Obrero",
+        profesor:   "Natalia Rodríguez",
+        cupoMax:    16,
+        inscriptos: 4,
+    },
+    {
+        id: 5,
+        nombre:     "Taekwondo",
+        horario:    "Miércoles 16:00 h",
+        sede:       "Capilla San José Obrero",
+        profesor:   "Ayelen Martínez",
+        cupoMax:    12,
+        inscriptos: 2,
+    },
+    {
+        id: 6,
+        nombre:     "Patín",
+        horario:    "Sábados 9:00 h",
+        sede:       "Capilla San José Obrero",
+        profesor:   "Nerina Castillo",
+        cupoMax:    10,
+        inscriptos: 10,
+    },
+]

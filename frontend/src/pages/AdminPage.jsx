@@ -16,6 +16,7 @@ import { IconFileReport } from '@tabler/icons-react';
 
 import ModuloAlumnos from '../components/admin/ModuloAlumnos';
 import ModuloProfesores from '../components/admin/ModuloProfesores';
+import ModuloClases from '../components/admin/ModuloClases';
 
 function AdminPage() {
   const {usuario, logout} = useAuth();
@@ -117,11 +118,7 @@ function AdminPage() {
         {/* MODULO ALUMNOS */}
         {moduloActivo === 'alumnos' && < ModuloAlumnos /> }
         {/* MODULO CLASES */}
-        {moduloActivo === 'clases' && (
-          <div className="flex items-center justify-center h-64">
-            <p className="text-gray-400 text-sm">Módulo Clases en construcción</p>
-          </div>
-        )}
+        {moduloActivo === 'clases' && <ModuloClases /> }
         {/* MODULO PROFESORES */}
         {moduloActivo === 'profesores' && <ModuloProfesores /> }
         {/* MODULO ASISTENCIA */}
