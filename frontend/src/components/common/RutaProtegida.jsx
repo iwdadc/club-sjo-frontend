@@ -3,7 +3,7 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 
-function RutaProtegida({ children }) {
+function RutaProtegida({ children, rolRequerido }) {
   const { usuario, cargando } = useAuth();
   console.log("usuario:", usuario);
   console.log("cargando:", cargando);
@@ -17,6 +17,10 @@ function RutaProtegida({ children }) {
     }
     if (!usuario) {
         return <Navigate to="/login" replace />;
+    }
+
+    if (usuario.rol !== rolRequerido) {
+        return <Navigate to="/login" replace />
     }
 
     return children;
