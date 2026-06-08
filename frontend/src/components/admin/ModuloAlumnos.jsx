@@ -5,12 +5,38 @@
 import { useState, useEffect } from 'react'
 import { IconSearch, IconEye, IconX, IconUsers, IconCircleCheck, IconClock, IconUsersGroup } from '@tabler/icons-react'
 import { getAlumnos } from '../../services/inscripcionService'
+import { getAsistenciaAlumno } from '../../services/asistenciaService'
+import { IconChartBar } from '@tabler/icons-react'
 import BadgeEstado from './BadgeEstado'
 
 function FichaAlumno({ alumno, onCerrar }) {
-    return (
+  const [asistencia, setAsistencia] = useState(null)
+
+  // Carga el porcentaje de asistencia del alumno al abrir la ficha
+  useEffect(() => {
+    async function cargar() {
+      const data = await getAsistenciaAlumno(alumno.id)
+      setAsistencia(data)
+    }
+    cargar()
+  }, [alumno.id])
+
+  // Calcula el porcentaje y el color de la barra
+  const porcentaje = asistencia
+    ? Math.round((asistencia.asistidas / asistencia.totalClases) * 100)
+    : null
+
+  function colorAsistencia(pct) {
+    if (pct >= 75) return { barra: 'bg-green-500',  texto: 'text-green-600' }
+    if (pct >= 50) return { barra: 'bg-amber-500',  texto: 'text-amber-600' }
+    return             { barra: 'bg-red-500',    texto: 'text-red-600'   }
+  }
+
+  const colores = porcentaje !== null ? colorAsistencia(porcentaje) : null
+
+  return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center px-4 z-50">
-        <div className="bg-white rounded-2xl w-full max-w-lg shadow-xl overflow-hidden">
+      <div className="bg-white rounded-2xl w-full max-w-lg shadow-xl overflow-hidden">
 
         {/* Header ficha */}
         <div className="bg-[#1E3A8A] px-6 py-4 flex justify-between items-center">
@@ -31,7 +57,7 @@ function FichaAlumno({ alumno, onCerrar }) {
         {/* Contenido ficha */}
         <div className="p-6 flex flex-col gap-4 max-h-[70vh] overflow-y-auto">
 
-          {/* DATOS PERSONALES */}
+          {/* Datos personales */}
           <div>
             <p className="text-xs font-semibold text-[#1E3A8A] uppercase tracking-wide mb-2">
               Datos personales
@@ -49,9 +75,7 @@ function FichaAlumno({ alumno, onCerrar }) {
 
           {/* Actividad */}
           <div>
-            <p className="text-xs font-semibold text-[#1E3A8A] uppercase tracking-wide mb-2">
-              Actividad
-            </p>
+            <p className="text-xs font-semibold text-[#1E3A8A] uppercase tracking-wide mb-2">Actividad</p>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div><p className="text-xs text-gray-400">Actividad</p><p className="text-gray-700">{alumno.actividad}</p></div>
               <div><p className="text-xs text-gray-400">Sede</p><p className="text-gray-700">{alumno.sede}</p></div>
@@ -60,11 +84,48 @@ function FichaAlumno({ alumno, onCerrar }) {
 
           <div className="h-px bg-gray-100" />
 
+          {/* ── ASISTENCIA ── */}
+          <div>
+            <p className="text-xs font-semibold text-[#1E3A8A] uppercase tracking-wide mb-2 flex items-center gap-1">
+              <IconChartBar size={13} /> Asistencia
+            </p>
+            {asistencia === null ? (
+              <p className="text-xs text-gray-400">Cargando...</p>
+            ) : asistencia === undefined ? (
+              <p className="text-xs text-gray-400">Sin registros de asistencia</p>
+            ) : (
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-gray-500">
+                    {asistencia.asistidas} de {asistencia.totalClases} clases asistidas
+                  </span>
+                  <span className={`text-sm font-semibold ${colores.texto}`}>
+                    {porcentaje}%
+                  </span>
+                </div>
+                <div className="h-2 bg-gray-100 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full rounded-full transition-all ${colores.barra}`}
+                    style={{ width: `${porcentaje}%` }}
+                  />
+                </div>
+                <p className="text-xs text-gray-400">
+                  {porcentaje >= 75
+                    ? 'Buena asistencia'
+                    : porcentaje >= 50
+                    ? 'Asistencia regular'
+                    : 'Baja asistencia — revisar'
+                  }
+                </p>
+              </div>
+            )}
+          </div>
+
+          <div className="h-px bg-gray-100" />
+
           {/* Adulto responsable */}
           <div>
-            <p className="text-xs font-semibold text-[#1E3A8A] uppercase tracking-wide mb-2">
-              Adulto responsable
-            </p>
+            <p className="text-xs font-semibold text-[#1E3A8A] uppercase tracking-wide mb-2">Adulto responsable</p>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div className="col-span-2"><p className="text-xs text-gray-400">Nombre</p><p className="text-gray-700">{alumno.nombreAdulto}</p></div>
               <div><p className="text-xs text-gray-400">Teléfono</p><p className="text-gray-700">{alumno.telefonoAdulto}</p></div>
@@ -75,9 +136,7 @@ function FichaAlumno({ alumno, onCerrar }) {
 
           {/* Salud */}
           <div>
-            <p className="text-xs font-semibold text-[#1E3A8A] uppercase tracking-wide mb-2">
-              Salud
-            </p>
+            <p className="text-xs font-semibold text-[#1E3A8A] uppercase tracking-wide mb-2">Salud</p>
             <div className="grid grid-cols-2 gap-2 text-sm">
               <div>
                 <p className="text-xs text-gray-400">Obra social</p>

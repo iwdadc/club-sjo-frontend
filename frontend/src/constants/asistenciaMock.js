@@ -15,3 +15,12 @@ export const ALUMNOS_MOCK = [
     { id: 7, nombre: "Ramiro Castillo",  dni: "53.220.445", idActividad: 2 },
     { id: 8, nombre: "Camila Ríos",      dni: "50.334.112", idActividad: 2 },
 ]
+
+export const ASISTENCIA_POR_ALUMNO_MOCK = [
+    { idAlumno: 1, totalClases: 8, asistidas: 7 },
+    { idAlumno: 2, totalClases: 8, asistidas: 4 },
+    { idAlumno: 3, totalClases: 6, asistidas: 6 },
+    { idAlumno: 4, totalClases: 6, asistidas: 2 },
+    { idAlumno: 5, totalClases: 5, asistidas: 5 },
+    { idAlumno: 6, totalClases: 4, asistidas: 3 },
+]
