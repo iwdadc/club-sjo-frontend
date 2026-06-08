@@ -1,0 +1,20 @@
+# Node
+frontend/node_modules
+bff/node_modules
+
+# Vite
+frontend/dist
+frontend/.vite
+
+# Variables de entorno
+.env
+.env.local
+.env.*
+
+# Java / Maven
+backend/target
+backend/*.class
+
+# OS
+.DS_Store
+Thumbs.db
