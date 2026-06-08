@@ -8,12 +8,10 @@ import { getNotificaciones, marcarLeida, cambiarEstadoAlumno } from '../../servi
 
 import BadgeEstado from './BadgeEstado'
 
-import { NOTIFICACIONES_MOCK } from '../../constants/notificacionesMock'
-
 // Ficha resumida del alumno dentro de la notificación
 function FichaResumida({ alumno }) {
     return (
-    <div className="bg-gray-50 rounded-xl p-3 flex flex-col gap-2 text-xs">
+    <div className="bg-white border border-gray-200 rounded-xl p-3 flex flex-col gap-2 text-xs">
         <div className="flex items-center gap-2">
             <IconUser size={12} className="text-gray-400 flex-shrink-0" />
             <span className="text-gray-600">DNI {alumno.dni} · {alumno.edad} años · {alumno.genero}</span>
@@ -99,16 +97,21 @@ function FichaResumida({ alumno }) {
         />
 
         {/* Panel */}
-        <div className="w-full max-w-sm bg-white shadow-2xl flex flex-col h-full overflow-hidden">
+        <div className="w-full max-w-md bg-white shadow-2xl border-l border-gray-200 flex flex-col h-full overflow-hidden">
 
             {/* Header */}
-            <div className="bg-[#1E3A8A] px-5 py-4 flex justify-between items-center flex-shrink-0">
+            <div className="bg-gradient-to-r from-[#1E3A8A] to-[#476892] px-5 py-4 flex justify-between items-center flex-shrink-0">
             <div>
                 <h3 className="text-white font-medium text-sm">Notificaciones</h3>
-                <p className="text-[#B5D4F4] text-xs mt-0.5">
-                {noLeidas > 0 ? `${noLeidas} sin revisar` : 'Todo al día'}
-                </p>
-            </div>
+                <div className="flex items-center gap-2 mt-1">
+                    <div className={`w-2 h-2 rounded-full ${
+                        noLeidas > 0 ? 'bg-amber-400' : 'bg-green-400'
+                        }`} />
+                        <p className="text-[#B5D4F4] text-xs">
+                            {noLeidas > 0 ? `${noLeidas} sin revisar` : 'Todo al día'}
+                        </p>
+                    </div>
+                </div>
             <button onClick={onCerrar} className="text-white/60 hover:text-white">
                 <IconX size={18} />
             </button>
