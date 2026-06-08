@@ -1,22 +1,24 @@
 //AdminPage.jsx - Panel de coordinador (ADMIN)
 // // Solo accesible para usuarios con rol ADMIN
 
-import { useState, useEffect } from 'react';
-import {useAuth} from '../context/AuthContext';
-import {getInscripciones, getStats} from '../services/inscripcionService';
+import { useState, useEffect } from 'react'
+import {useAuth} from '../context/AuthContext'
+import {getInscripciones, getStats} from '../services/inscripcionService'
 
-import StatCard from '../components/admin/StatCard';
-import TablaInscripciones from '../components/admin/TablaInscripciones';
+import StatCard from '../components/admin/StatCard'
+import TablaInscripciones from '../components/admin/TablaInscripciones'
 
-import SidebarAdmin from '../components/admin/SidebarAdmin';
-import HeaderAdmin from '../components/admin/HeaderAdmin';
-import BottomNav from '../components/admin/BottomNav';
+import SidebarAdmin from '../components/admin/SidebarAdmin'
+import HeaderAdmin from '../components/admin/HeaderAdmin'
+import BottomNav from '../components/admin/BottomNav'
 
-import { IconFileReport } from '@tabler/icons-react';
+import { IconFileReport } from '@tabler/icons-react'
 
-import ModuloAlumnos from '../components/admin/ModuloAlumnos';
-import ModuloProfesores from '../components/admin/ModuloProfesores';
-import ModuloClases from '../components/admin/ModuloClases';
+import ModuloAlumnos from '../components/admin/ModuloAlumnos'
+import ModuloProfesores from '../components/admin/ModuloProfesores'
+import ModuloClases from '../components/admin/ModuloClases'
+import ModuloAsistencia from '../components/admin/ModuloAsistencia'
+import ModuloReportes from '../components/admin/ModuloReportes'
 
 function AdminPage() {
   const {usuario, logout} = useAuth();
@@ -118,21 +120,13 @@ function AdminPage() {
         {/* MODULO ALUMNOS */}
         {moduloActivo === 'alumnos' && < ModuloAlumnos /> }
         {/* MODULO CLASES */}
-        {moduloActivo === 'clases' && <ModuloClases /> }
+        {moduloActivo === 'clases' && < ModuloClases /> }
         {/* MODULO PROFESORES */}
-        {moduloActivo === 'profesores' && <ModuloProfesores /> }
+        {moduloActivo === 'profesores' && < ModuloProfesores /> }
         {/* MODULO ASISTENCIA */}
-        {moduloActivo === 'asistencia' && (
-          <div className="flex items-center justify-center h-64">
-            <p className="text-gray-400 text-sm">Panel asistencia en construccion</p>
-          </div>
-        )}
+        {moduloActivo === 'asistencia' && < ModuloAsistencia />}
         {/* MODULO REPORTES */}
-        {moduloActivo === 'reportes' && (
-          <div className="flex items-center justify-center h-64">
-            <p className="text-gray-400 text-sm">Panel reportes en construccion</p>
-          </div>
-        )}
+        {moduloActivo === 'reportes' && < ModuloReportes />}
       </main>
 
         {/* Modal de detalle de inscripción */}
